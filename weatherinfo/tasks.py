@@ -9,7 +9,7 @@ logger = get_task_logger(__name__)
 
 
 @periodic_task(
-    run_every=(crontab(minute='*/1')),
+    run_every=(crontab(minute='*/30')),
     name="task_latest_weather_info",
     ignore_result=True
 )
