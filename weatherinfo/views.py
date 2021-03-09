@@ -1,11 +1,9 @@
 from django.contrib.auth import login, logout
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.utils.decorators import method_decorator
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
-from rest_framework import generics, permissions
+from rest_framework import permissions
 from rest_framework.response import Response
 
 from weatherinfo.helpers import validate_email, send_email
@@ -44,7 +42,7 @@ def email_weather_info(request):
             valid_emails = validate_email(emails)
             if valid_emails:
                 logging.info("email_weather_info: valid emails {}".format(valid_emails))
-                cityWeatherDetails = CityWeatherDetails.objects.all().order_by('-id')[:30]
+                cityWeatherDetails = CityWeatherDetails.objects.all().order_by('-id')[:10]
                 # json_data = CityWeatherDetailsSerializer("json", list(cityWeatherDetails.values()), many=True)
                 # convert queryset to json data
                 json_data = json.loads(serialize('json', cityWeatherDetails))

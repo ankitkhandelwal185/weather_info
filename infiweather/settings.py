@@ -98,7 +98,7 @@ REST_FRAMEWORK = {
 # sendgrid credentials
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'  # this is exactly the value 'apikey'
-EMAIL_HOST_PASSWORD = "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"
+EMAIL_HOST_PASSWORD = ""
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -111,7 +111,12 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Africa/Nairobi'
 
 WEATHER_API_ENDPOINT = "http://api.openweathermap.org"
-WEATHER_API_KEY = "89090c92d0818c25991e57f7a52b1f8b"
+WEATHER_API_KEY = ""
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
