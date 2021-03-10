@@ -39,7 +39,6 @@ def fetch_weather_info():
                 if city_details.exists():
                     city_details.update(**cityWeatherDetails)
                 else:
-                    print("insert")
                     city_details = CityWeatherDetails(**cityWeatherDetails)
                     city_details.save()
         except requests.exceptions.RequestException as e:
